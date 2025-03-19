@@ -1,44 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:mad/routes/app_route.dart';
+import 'package:mad/screens/main_screen.dart';
+import 'package:mad/screens/splash_screen.dart';
+import 'package:mad/utils/app_color.dart';
 
 void main() {
-  // 4. Control
-
-  final appSlogan = Text(
-    "The Future of Global Leader.",
-    style: TextStyle(fontSize: 20),
-  );
-
-  final logo = Expanded(
-      child: Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [Image.asset("assets/images/beltei.png"), appSlogan],
-  ));
-
-  final getStart = Padding(
-    padding: EdgeInsets.only(bottom: 20),
-    child: Container(
-      width: 500,
-      child: ElevatedButton(
-          onPressed: () {
-            print("Click");
-          },
-          child: Text("Get Start")),
-    ),
-  );
-
-  // 3. Layout/Block
-  final centerLayout = Column(
-    children: [logo, getStart],
-  );
-
-  // 2. Create Screen
-  final screen = Scaffold(
-    body: centerLayout,
-  );
+  final screen = MainScreen();
 
   // 1. Create App
   final app = MaterialApp(
-    home: screen,
+    // Option1
+    // home: screen,
+
+    // Option 2
+    initialRoute: AppRoute.splashScreen,
+    onGenerateRoute: AppRoute.generateRoute,
+    navigatorKey: AppRoute.key,
+
+    // Option 3
+    // routes: {
+    //   '/': (context) => SplashScreen(),
+    //   '/mainScreen': (context) => MainScreen(),
+    // },
+
+    theme: ThemeData(
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: AppColor.appBackgroundColor),
+        useMaterial3: false),
   );
 
   // Run App
